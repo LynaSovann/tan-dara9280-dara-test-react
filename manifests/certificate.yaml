@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tan-dara9280-dara-test-react-certificate
+  namespace: tan-dara9280-dara-test-react
+spec:
+  secretName: tan-dara9280-dara-test-react-secret-tls
+  commonName: tan-dara9280-dara-test-react.assessify.org
+  dnsNames:
+  - tan-dara9280-dara-test-react.assessify.org
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
