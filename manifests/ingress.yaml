@@ -1,0 +1,28 @@
+ apiVersion: networking.k8s.io/v1
+ kind: Ingress
+ metadata:
+   name: tan-dara9280-dara-test-react-https-ingress
+   namespace: tan-dara9280-dara-test-react
+   annotations:
+     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+     nginx.ingress.kubernetes.io/use-regex: "true"
+     nginx.ingress.kubernetes.io/proxy-body-size: 8m    
+     nginx.ingress.kubernetes.io/rewrite-target: /
+ spec:
+   ingressClassName: nginx
+   tls:
+     - hosts:
+         - tan-dara9280-dara-test-react.assessify.org
+       secretName: tan-dara9280-dara-test-react-secret-tls
+   rules:
+     - host: tan-dara9280-dara-test-react.assessify.org
+       http:
+         paths:
+           - path: /
+             pathType: Prefix
+             backend:
+               service:
+                 name: tan-dara9280-dara-test-react-service
+                 port:
+                   number: 8232
+ 
